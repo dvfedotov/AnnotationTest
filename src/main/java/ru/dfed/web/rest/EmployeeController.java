@@ -2,6 +2,8 @@ package ru.dfed.web.rest;
 
 
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,8 @@ import ru.dfed.model.dto.EmployeeDto;
 @RequestMapping("api/")
 public class EmployeeController {
 
+    private final Logger log = LoggerFactory.getLogger(EmployeeController.class);
+
     private final EmployeeMapper mapper;
 
     public EmployeeController(EmployeeMapper mapper) {
@@ -23,14 +27,22 @@ public class EmployeeController {
     }
 
     @PostMapping("employee")
-    public ResponseEntity<EmployeeDto> getExampleDto(HttpServletRequest request,
-                                                     @RequestBody Employee employee) {
-        System.out.println(employee.toString());
+    public ResponseEntity<EmployeeDto> getEmployeeDto(HttpServletRequest request,
+                                                      @RequestBody Employee employee) {
+        log.info("Request to getExampleDto: {}", employee);
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(mapper.toDto(employee));
     }
 
+    @PostMapping("employeeDto")
+    public ResponseEntity<Employee> getEmployee(HttpServletRequest request,
+                                                @RequestBody EmployeeDto employeeDto) {
+        log.info("Request to getExampleDto: {}", employeeDto);
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(mapper.fromDto(employeeDto));
+    }
 
 }
 

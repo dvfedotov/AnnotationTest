@@ -1,11 +1,10 @@
 package ru.dfed.model.dto;
 
-import java.util.Objects;
-
 public class ExampleDto {
 
     private long id;
     private String fullName;
+    private String dateCreated;
 
 
     public ExampleDto() {
@@ -27,21 +26,12 @@ public class ExampleDto {
         this.fullName = fullName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ExampleDto that = (ExampleDto) o;
-        return Objects.equals(fullName, that.fullName);
+    public String getDateCreated() {
+        return dateCreated;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(fullName);
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     @Override
@@ -49,7 +39,7 @@ public class ExampleDto {
         return "ExampleDto{"
             + "id=" + id
             + ", firstName='" + fullName + '\''
+            + ", dateCreated='" + dateCreated + '\''
             + '}';
     }
 }
-
