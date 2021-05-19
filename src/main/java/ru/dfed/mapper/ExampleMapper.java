@@ -1,20 +1,21 @@
 package ru.dfed.mapper;
 
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import ru.dfed.model.Example;
 import ru.dfed.model.dto.ExampleDto;
 
-@Mapper(uses = {ExampleDateMapper.class})
+@Mapper(componentModel = "spring",uses = {ExampleDateMapper.class})
 public interface ExampleMapper {
     @Mapping(source = ".", target = "fullName", qualifiedByName = "FullNameByFirstAndLastName")
-    @Mapping(source="dateCreated", target="dateCreated")
+    @Mapping(source = "dateCreated", target = "dateCreated")
     ExampleDto toDto(Example example);
 
     @Mapping(source = ".", target = "firstName", qualifiedByName = "FirstNameByFullName")
     @Mapping(source = ".", target = "lastName", qualifiedByName = "LastNameByFullName")
-    @Mapping(source="dateCreated", target="dateCreated")
+    @Mapping(source = "dateCreated", target = "dateCreated")
     Example fromDto(ExampleDto exampleDto);
 
     @Named("FullNameByFirstAndLastName")

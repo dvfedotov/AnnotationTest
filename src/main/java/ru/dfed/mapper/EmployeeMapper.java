@@ -20,8 +20,8 @@ public interface EmployeeMapper {
     @Mapping(source = ".", target = "phone", qualifiedByName = "GetPhoneFromEmployee")
     EmployeeDto toDto(Employee employee);
 
-    @Mapping(source = "address", target = "address", qualifiedByName = "GetAddressFromEmployeeDto")
-    @Mapping(source = "phone", target = "phone", qualifiedByName = "GetPhoneFromEmployeeDto")
+    @Mapping(source = ".", target = "address", qualifiedByName = "GetAddressFromEmployeeDto")
+    @Mapping(source = ".", target = "phone", qualifiedByName = "GetPhoneFromEmployeeDto")
     Employee fromDto(EmployeeDto employeeDto);
 
 
